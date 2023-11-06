@@ -71,7 +71,7 @@ see [docs](https://nf-co.re/usage/configuration#custom-configuration-files).
 
 ## Credits
 
-scicomp/ebola was originally written by Sam Rusher (rtq0@cdc.gov).
+scicomp/ebola was originally written by Sam Rusher.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
