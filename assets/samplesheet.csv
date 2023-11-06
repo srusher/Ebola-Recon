@@ -1,0 +1,2 @@
+sample,fastq_1,fastq_2
+SAMPLE_PAIRED_END,/scicomp/reference/nextflow/cdc_hackathon/test/SRR1972739_1.fastq.gz,/scicomp/reference/nextflow/cdc_hackathon/test/SRR1972739_2.fastq.gz

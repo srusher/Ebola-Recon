@@ -1,0 +1,5 @@
+GCF_000854085.1,/scicomp/reference/nextflow/cdc_hackathon/Reference_Genomes_Ebola/GCF_000854085/ncbi_dataset/data/GCF_000854085.1/GCF_000854085.1_ViralProj15006_genomic.fna,
+GCF_000855585.1,/scicomp/reference/nextflow/cdc_hackathon/Reference_Genomes_Ebola/GCF_000855585/ncbi_dataset/data/GCF_000855585.1/GCF_000855585.1_ViralProj15012_genomic.fna,
+GCF_000888475.1,/scicomp/reference/nextflow/cdc_hackathon/Reference_Genomes_Ebola/GCF_000888475/ncbi_dataset/data/GCF_000888475.1/GCF_000888475.1_ViralProj51257_genomic.fna,
+GCF_000889155.1,/scicomp/reference/nextflow/cdc_hackathon/Reference_Genomes_Ebola/GCF_000889155/ncbi_dataset/data/GCF_000889155.1/GCF_000889155.1_ViralProj51245_genomic.fna,
+AF086833.2_Zaire_Ebola,/scicomp/reference/nextflow/cdc_hackathon/Reference_Genomes_Ebola/AF086833.2_Zaire_Ebola.fasta

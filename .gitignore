@@ -1,0 +1,13 @@
+.nextflow*
+work
+work/*
+data/
+results
+results/*
+.DS_Store
+testing/
+testing*
+*.pyc
+assets/reads
+assets/reference
+assets/samplesheet-local.csv
