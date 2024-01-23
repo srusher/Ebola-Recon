@@ -1,6 +1,6 @@
 process BLAST_BLASTN {
     tag "$meta.id"
-    label 'process_medium'
+    label 'process_high'
 
     conda "bioconda::blast=2.14.1"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -22,14 +22,12 @@ process BLAST_BLASTN {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    DB=`find -L ./ -name "*.ndb" | sed 's/\\.ndb\$//'`
+    BLASTDB=/scicomp/reference/ncbi-blast-taxdb
+    blast_args="6 qseqid sacc pident length mismatch evalue bitscore stitle"
     blastn \\
-        -num_threads $task.cpus \\
-        -db \$DB \\
+        -db "/scicomp/reference/ncbi-blast-virus-db/nt" \\
         -query $fasta \\
-        -outfmt 6 \\
-        -qcov_hsp_perc 70 \\
-        -perc_identity 70 \\
+        -outfmt "\$blast_args" \\
         $args \\
         -out ${prefix}.txt
 

@@ -1,0 +1,2 @@
+sample,fastq_1,fastq_2
+Sample-01-X-2023,/scicomp/reference/nextflow/cdc_hackathon/Hackathon_Data/Input_files/Sample-01-X-2023_1.fastq.gz,/scicomp/reference/nextflow/cdc_hackathon/Hackathon_Data/Input_files/Sample-01-X-2023_2.fastq.gz

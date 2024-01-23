@@ -22,14 +22,15 @@ Processes sequencing reads and identifies potential ebola strains present within
 2. Read trimming with FASTP - adapter sequence file defined in nextflow.config
 3. Filter out human reads with kraken2
 4. Classify remaining reads using the standard kraken db (or db of choice)
-5. a. Align reads with reference genome using minimap 2
-   b. Generate alignment statistics using samtools
-   c. Perform variant calling with iVar
-6. a. De novo assembly of classified reads
-   b. Perform assembly qc with QUAST
-   c. Annotate genome with prokka
-
-2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+5. a. Align reads with reference genome using minimap 2<br>
+   b. Generate alignment statistics using samtools<br>
+   c. Perform variant calling with iVar<br>
+6. a. De novo assembly of classified reads<br>
+   b. Perform assembly qc with QUAST<br>
+   c. Annotate genome with prokka<br>
+7. Run contigs through BLAST and evaluate hits
+8. Pass hits that meet certain criteria into FastANI for phylogenetic analysis
+9. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
 
 ## Usage
 
@@ -71,7 +72,7 @@ see [docs](https://nf-co.re/usage/configuration#custom-configuration-files).
 
 ## Credits
 
-scicomp/ebola was originally written by Sam Rusher.
+scicomp/ebola was originally written by Sam Rusher (rtq0@cdc.gov).
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 

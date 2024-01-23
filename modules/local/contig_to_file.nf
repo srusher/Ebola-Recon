@@ -20,50 +20,22 @@ process CONTIG_TO_FILE {
     #!/bin/bash
     
     valid_reads=""
-    exp=""
 
     # Parse the file with awk and check conditions
     while IFS=\$'\t' read -r line; do
 
         identifier=\$(echo \$line | awk -F' ' '{ print \$1 }')
-
-        evalue=\$(echo \$line | awk -F' ' '{ print \$11 }')
-
-        bitscore=\$(echo \$line | awk -F' ' '{ print \$12 }')
-        bitscore="\${bitscore%.*}"
         
-        e_thresh=6
-        bit_thresh=55
+        if [[ \$valid_reads == "" ]]; then
 
-        e_string=\$(echo "\$evalue" | grep 'e-')
+            valid_reads="\$identifier"
 
-        if [ ! -z "\$e_string" ]; then
-        
-            exp=\$(echo \$evalue | awk -F 'e-' '{print \$2}' )
-        
         else
 
-            exp=""
-
+            valid_reads="\$valid_reads \$identifier"
+        
         fi
 
-        if [ ! -z "\$exp" ]; then
-
-            if [ "\$exp" -gt "\$e_thresh" ]; then
-
-                valid_reads="\$valid_reads \$identifier"
-
-            fi
-
-        elif [[ "\$evalue" == "0.0" ]]; then
-
-            valid_reads="\$valid_reads \$identifier"
-
-        elif [ "\$bitscore" -lt "\$bit_thresh" ]; then
-
-            valid_reads="\$valid_reads \$identifier"
-
-        fi
 
     done < $blast_report
 

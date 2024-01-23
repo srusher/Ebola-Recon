@@ -29,6 +29,7 @@ process FASTANI {
             --ql $query \\
             --rl $query \\
             --matrix \\
+            --visualize \\
             --fragLen 250 \\
             -k 10 \\
             -o ${prefix}.ani.txt

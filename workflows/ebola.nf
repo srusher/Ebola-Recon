@@ -62,7 +62,6 @@ include { KRAKEN2_KRAKEN2 as KRAKEN2_HUMAN } from '../modules/nf-core/kraken2/kr
 include { KRAKEN2_KRAKEN2 as KRAKEN2_STD } from '../modules/nf-core/kraken2/kraken2/main'
 include { SPADES } from '../modules/nf-core/spades/main'
 include { BLAST_MAKEBLASTDB } from '../modules/nf-core/blast/makeblastdb/main'
-include { BLAST_BLASTN } from '../modules/nf-core/blast/blastn'
 include { PROKKA } from '../modules/nf-core/prokka/main'
 include { QUAST } from '../modules/nf-core/quast/main'
 include { MINIMAP2_ALIGN } from '../modules/nf-core/minimap2/align/main'
@@ -81,6 +80,7 @@ include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoft
 include { UNZIP } from '../modules/local/unzip'
 include { CONTIG_TO_FILE } from '../modules/local/contig_to_file'
 include { CONTIGS_TO_LIST } from '../modules/local/contigs_to_list'
+include { BLAST_BLASTN } from '../modules/local/blastn'
 include { MERGE_LISTS } from '../modules/local/merge_contigs_and_genomes'
 include { FASTANI } from '../modules/local/fastani'
 
@@ -251,7 +251,7 @@ workflow EBOLA {
                 BLAST_MAKEBLASTDB.out.db
             )
 
-            blat_ch = BLAST_BLASTN.out.txt
+            blast_ch = BLAST_BLASTN.out.txt
 
         } else {
 
@@ -260,13 +260,13 @@ workflow EBOLA {
                 params.blastdb_dir
             )
 
-            blat_ch = BLAST_BLASTN.out.txt
+            blast_ch = BLAST_BLASTN.out.txt
         }
         
         // breaking each contig produced from spades into a separate file
         CONTIG_TO_FILE (
             UNZIP.out.unzip_contigs,
-            BLAST_BLASTN.out.txt
+            blast_ch
         )
 
         // Creating a file that contains the list of all the file paths to each contigs file
@@ -280,13 +280,13 @@ workflow EBOLA {
             params.genomes_for_msa
         )
 
-        // Insert FastANI module here
+	// Insert FastANI module here
 
+       FASTANI(
+            MERGE_LISTS.out.merged_list
+        ) 
 
-
-
-        // assembly annotation with prokka
-        PROKKA (
+       PROKKA (
             UNZIP.out.unzip_contigs,
             [],
             []
